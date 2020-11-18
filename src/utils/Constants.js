@@ -1,0 +1,1 @@
+exports.ROLES = ["user", "admin", "driver"];

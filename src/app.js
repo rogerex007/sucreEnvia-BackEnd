@@ -1,12 +1,20 @@
+require('./db/database');
+
 const serverless = require('serverless-http');
 const express = require('express');
 const cors = require('cors');
 
-const app = express();
 
-//Variables
+const { createRoles } = require('./libs/initialSetup');
+
 const authRoutes = require('./routes/auth.routes');
-const apiDescription = require('./routes/apiDescription.routes');
+const apiDescriptionRoutes = require('./routes/apiDescription.routes');
+
+
+const app = express();
+createRoles();
+
+
 
 //Middleware
 app.use(cors());
@@ -14,7 +22,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 //Routes
-app.use('/api/v1', apiDescription)
+app.use('/api/v1', apiDescriptionRoutes);
+app.use('/api/v1/login', authRoutes);
 
 
 
