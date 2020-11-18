@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 require('./db/database');
 
 const serverless = require('serverless-http');
